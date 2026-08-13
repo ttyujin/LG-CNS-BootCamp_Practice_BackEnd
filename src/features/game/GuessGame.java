@@ -18,37 +18,64 @@ Q) 숫자를 맞추는 게임
 public class GuessGame{
     
     Scanner scan = new Scanner(System.in);
-
+    int answer;
     public GuessGame(){
         
     }
 
     //case 1
     public String gameFor(){
-        
-        int answer = (int)(Math.random() * 100) + 1;
+        System.out.println("debug >>>> answer log : " + answer);
 
-        for(int time = 1; time <= 10; time++) {
+            String result = null;
+            int cnt = 0;
+            boolean isFlag = false;
 
-            System.out.print(">>>> 생각하는 숫자를 입력하세요 : ");
-            
-            int guess = scan.nextInt();
+            Scanner scan = new Scanner(System.in);
 
-            if(guess == answer) {
-                return time + "번째 정답을 맞췄습니다!";
-                // System.out.println(time + "번째 정답을 맞췄습니다!");
-                // break;
+            for(int idx = 1; idx <= 10; idx++) {
+                cnt = idx;
 
-            } 
-            else if(guess < answer) {
-                System.out.println("UP");
-            } 
-            else {
-                System.out.println("DOWN");
+                System.out.print(">>>> 생각하는 숫자를 입력하세요 : ");
+                int guess = scan.nextInt();
+
+                if(answer > guess) {
+                    System.out.println(">>> Up");
+                } else if(answer < guess) {
+                    System.out.println(">>> Down");
+                } else {
+                    isFlag=true;
+                    break;
+                }
             }
-        }
 
-        return "10번의 기회를 모두 사용했습니다.";
+            result=(isFlag)?cnt+"번째 정답을 맞췄습니다.":"10번의 기회를 모두 사용했습니다.";
+            return result;
+        
+                //나의 방법
+                // int answer = (int)(Math.random() * 100) + 1;
+
+                // for(int time = 1; time <= 10; time++) {
+
+                //     System.out.print(">>>> 생각하는 숫자를 입력하세요 : ");
+                    
+                //     int guess = scan.nextInt();
+
+                //     if(guess == answer) {
+                //         return time + "번째 정답을 맞췄습니다!";
+                //         // System.out.println(time + "번째 정답을 맞췄습니다!");
+                //         // break;
+
+                //     } 
+                //     else if(guess < answer) {
+                //         System.out.println("UP");
+                //     } 
+                //     else {
+                //         System.out.println("DOWN");
+                //     }
+                // }
+
+                // return "10번의 기회를 모두 사용했습니다.";
     }
 
     //case 2
