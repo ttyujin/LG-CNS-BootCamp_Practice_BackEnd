@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Getter
 @Setter //데이터는 읽기전용이라서 getter만 받는 것이 이상적이다.
-@ToString
+@ToString(callSuper=true)
 
 
 public class StudentDTO extends PersonDTO { //personDTO 상속
