@@ -126,6 +126,18 @@ public class CollectionApp {
         map.put("teacher",teacherList);
         map.put("manager",managerList);
 
+        // List<? extends PersonDTO> mapList=map.get("student");
+        // List<? extends PersonDTO> mapList=map.get("manager");
+        
+        // List<? extends PersonDTO> mapList=map.get("teacher");
+        // mapList.forEach(person->System.out.println(person.personInfo()));
+
+        // map .get("student")
+        //     .stream()
+        //     .filter(null)
+        //     .map(null)
+        //     .forEach(person->System.out.println(person.personInfo()));
+
 
     }
 
