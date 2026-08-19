@@ -6,108 +6,114 @@ import features.oop.sup.PersonDTO;
 import features.oop.util.Flag;
 
 public class OopApp {
-    
+
     public static void main(String[] args) {
         
-        // StudentDTO stu=new StudentDTO();  일반적인 객체생성 / this에 대한 접근
+        // StudentDTO stu = new StudentDTO();
         // stu.setSsn("2026");
+        // stu.setName(null);
         // stu.setAge(0);
-        // stu.setAddress(null); //super에 대한 접근
+        // stu.setAddress(null);
 
-        StudentDTO stu= new StudentDTO("탁유진",27,"경기도","2026");
+        StudentDTO stu 
+            = new StudentDTO("임섭순", 20, "서울", "2026");
         System.out.println(stu.getName());
         System.out.println(stu.getAge());
         System.out.println(stu.getAddress());
         System.out.println(stu.getSsn());
-        /////////////////////////////////
         
-        TeacherDTO tea = new TeacherDTO("탁선생", 35, "서울", "Java");
-
+        System.out.println();
+        System.out.println("debug >>>> TeacherDTO");
+        // Q) TeacherDTO 도 PersonDTO 상속받고 StudentDTO 객체생성처럼 구현
+        TeacherDTO tea 
+            = new TeacherDTO("임섭순", 20, "서울", "java");
         System.out.println(tea.getName());
         System.out.println(tea.getAge());
         System.out.println(tea.getAddress());
         System.out.println(tea.getSubject());
 
-        /////////////////////////////////
-        PersonDTO manager= new ManagerDTO("탁유진",27,"경기도","교권보호국"); //persondto이라는 객체가 managerdto객체에 접근
-        //managet.getDept() 접근할 수 있는 방법?
-        //casting이 참조 타입에 적요오딜 수 있음(다만, 상속관계를 전제로)
-       // System.out.println(manager.getDept()); -> 에러
+        
+        System.out.println();
+        System.out.println("debug >>>> 변수타입의 다형성");
+        PersonDTO manager
+            = new ManagerDTO("김혜림", 20, "서울", "교육사무국") ;
+        
+        // Q) manager.getDept() 접근할 수 있는 방법은?
+        // casting 이 참조타입에 적용될 수 있음(다만, 상속관계를 전제로)
         System.out.println(manager.getName());
         System.out.println(manager.getAge());
         System.out.println(manager.getAddress());
-        System.out.println(((ManagerDTO)manager).getDept()); //manager에 직접 접근이 안되서 (())이라는 casting 접근으로만 가능
+        System.out.println( ((ManagerDTO)manager).getDept()); 
 
-        ////////////////////////////////
+
+        System.out.println();
+        System.out.println("debug >>>> 변수타입의 다형성을 활용 : 배열"); 
+
+        PersonDTO [] ary = new PersonDTO[3] ; 
+        ary[0] = new TeacherDTO("임정섭", 20, "서울", "react") ;
+        ary[1] = new ManagerDTO("김혜림", 20, "서울", "교육팀") ;
+        ary[2] = new StudentDTO("이상혁", 20, "서울", "2026") ;
         
-        PersonDTO[] ary =new PersonDTO[3];
-        ary[0]=new TeacherDTO("탁유진",20,"서울","python");
-        ary[1]=new ManagerDTO("나유성",20,"서울","교육팀");
-        ary[2]=new StudentDTO("임찬혁",20,"서울","2026");
 
-        PersonDTO per01=ary[0];
+        PersonDTO per01 = ary[0] ; 
         System.out.println(per01.getName());
         System.out.println(per01.getAge());
         System.out.println(per01.getAddress());
         System.out.println(((TeacherDTO)per01).getSubject());
 
-        // for (int idx=0; idx<ary.length; idx++){
-        //     PersonDTO per=ary[idx];
-        //     if(per instanceof TeacherDTO){
-        //         System.out.println(((TeacherDTO)per).getSubject());
+        System.out.println();
+        // for(int idx=0 ; idx < ary.length ; idx++) {
+        //     PersonDTO per = ary[idx];
+        //     if (per instanceof TeacherDTO) {
+        //         System.out.println( ((TeacherDTO)per).getSubject() ); 
+        //     } 
+        //     if (per instanceof ManagerDTO ) {
+        //         System.out.println( ((ManagerDTO)per).getDept() );
+        //     } 
+        //     if (per instanceof StudentDTO ) {
+        //         System.out.println( ((StudentDTO)per).getSsn() );
         //     }
-        //     else if(per instanceof ManagerDTO){
-        //         System.out.println(((ManagerDTO)per).getDept());
-        //     }
-        //     else{
-        //         System.out.println(((StudentDTO)per).getSsn());
-        //     }
-        //    }
+        // }
 
-        for (int idx=0; idx<ary.length; idx++){
-            PersonDTO per=ary[idx];
-            System.out.println(per.personInfo());
-    }
+        for(int idx=0 ; idx < ary.length ; idx++) {
+            PersonDTO per = ary[idx];
+            System.out.println( per.personInfo() ); 
+        }
+
 
         System.out.println();
         System.out.println();
-        System.out.println("debug>>>>매개변수의 다형성");
-
-
-        OopService service=new OopService();
+        System.out.println("debug >>>> 매개변수의 다형성 ");
+        System.out.println();
+        
+        OopService service = new OopService();
         
         // service.setAry(stu);
-        // service.setAry(tea); 
-        // service.setAry(manager); 매개변수의 다형성 적용
+        // service.setAry(tea);
+        // service.setAry(manager);
 
-        //이름을 key로 활용
-        service.makePerson(Flag.STUDENT, "탁유진", 27, "sanbon", "2026");
-        service.makePerson(Flag.TEACHER, "나유성", 25, "seoul", "java");
-        service.makePerson(Flag.MANAGER, "임찬혁", 25, "incheon", "교권보호국");
+        service.makePerson(Flag.STUDENT, "문한일", 20, "seoul", "2026");
+        service.makePerson(Flag.TEACHER, "임정섭", 20, "seoul", "java");
+        service.makePerson(Flag.MANAGER, "김혜림", 20, "seoul", "교육팀");
 
         System.out.println();
-        System.out.println();
-        System.out.println("debug>>>정보 출력");
-       
-        PersonDTO[] result=service.getAry();
-
-        for(PersonDTO person:result){
-            if(person==null){
-                break;
+        System.out.println("debug >>>> 정보출력");
+        PersonDTO[] result = service.getAry() ; 
+        for(PersonDTO person : result) {
+            if(person == null) {
+                break ;
             }
-            System.out.println(person.personInfo()); //다형성 사용 왜? 2026, java, 교권 보호국이 출력이 되서
-        }
-
+            System.out.println( person.personInfo() ); 
+        }  
         System.out.println();
-        System.out.println();
-        System.out.println("debug>>>findPersin");
-        PersonDTO find=service.findPerson("탁유진");
-        if(find!=null){
+        System.out.println("debug >>>> findPerson ");
+        PersonDTO find = service.findPerson("박수진");
+        if( find != null ) {
             System.out.println(find.personInfo());
-        }else{
-            System.out.println(">>>>Not Found!!");
+        }else {
+            System.out.println(">>>> Not Found!!");
         }
-        
 
     }
+
 }

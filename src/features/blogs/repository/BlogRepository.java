@@ -7,25 +7,25 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/*
-repository,dao
+/* 
+repository, dao
 - data access logic
-- JDBC를 기본으로 해서 Object Relationship Mapping(mybatis,JPA) 확장
-- 원격에 있는 database와 통신을 통해서 CRUD 작업을 전담하는 객체
+- JDBC를 기본으로해서 Object Relationship Mapping(mybatis, JPA) 확장
+- 원격에 있는 database와 통신을 통해서 CRUD 작업을 전담하는 객체 
 */
-
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
-
 public class BlogRepository {
-    private BlogResponseDTO[] list = new BlogResponseDTO[10];
-
-    public BlogResponseDTO[] blogs(){
-        System.out.println("debug>>>> BlogRepository blogs()");
-        return list;
+    
+    private BlogResponseDTO [] list = new BlogResponseDTO[10] ; 
+    
+    public BlogResponseDTO[] blogs() {
+        System.out.println("debug >>>> BlogRepository blogs() ");
+        return list ;
     }
 
 }
+

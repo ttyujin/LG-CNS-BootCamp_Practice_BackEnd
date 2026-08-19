@@ -1,7 +1,6 @@
 package features.oop.abstraction;
 
-
-public class SuperMan extends Animal implements Flyer{
+public class SuperMan extends Animal implements Flyer {
 
     @Override
     public void fly() {
@@ -10,9 +9,9 @@ public class SuperMan extends Animal implements Flyer{
     }
 
     @Override
-    public void takeoff() {
+    public void takeOff() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'takeoff'");
+        throw new UnsupportedOperationException("Unimplemented method 'takeOff'");
     }
 
     @Override

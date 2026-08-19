@@ -10,34 +10,39 @@ import lombok.experimental.SuperBuilder;
 
 @SuperBuilder
 @Getter
-@Setter //데이터는 읽기전용이라서 getter만 받는 것이 이상적이다.
-@ToString(callSuper=true)
+@Setter
+@ToString(callSuper = true)
+public class StudentDTO extends PersonDTO {
 
+    private String  ssn ;
 
-public class StudentDTO extends PersonDTO { //personDTO 상속
-    
-    
-    private String ssn; //ssn이라는 멤버 변수만 가지고 있음
-    
     // public StudentDTO(){
-
     // }
-    
     public StudentDTO(String name, int age, String address, String ssn) {
         super(name, age, address);
         this.ssn = ssn;
     }
 
+
     // public String getSsn() {
     //     return ssn;
     // }
-    
+
     // public void setSsn(String ssn) {
     //     this.ssn = ssn;
     // }
 
+
     @Override
     public String personInfo() {
-        return super.personInfo()+", ssn=" + ssn;
+        return super.personInfo()+", ssn=" + ssn ;
     }
+    public String stuInfo() {
+        return super.personInfo()+", ssn=" + ssn ;
+    }
+
+
 }
+
+
+

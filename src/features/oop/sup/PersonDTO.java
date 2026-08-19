@@ -10,25 +10,22 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Getter
 @Setter
-@ToString(callSuper=true)
-
-
+@ToString
 public class PersonDTO {
-    
-    private String name;
-    private int age;
-    private String address;
+
+    private String  name ;
+    private int     age  ;
+    private String  address; 
 
     // public PersonDTO(){
-
     // }
     
     public PersonDTO(String name, int age, String address) {
-        super();
         this.name = name;
         this.age = age;
         this.address = address;
     }
+
 
     // public String getName() {
     //     return name;
@@ -55,7 +52,7 @@ public class PersonDTO {
     // }
 
     public String personInfo() {
-        return "name=" + name + ", age=" + age + ", address=" + address;
+        return "name=" + name + ", age=" + age + ", address=" + address ; 
     }
 
 }

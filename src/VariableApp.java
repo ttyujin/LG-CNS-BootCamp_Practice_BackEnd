@@ -7,7 +7,7 @@ public class VariableApp {
         - 문자형(char)
         - 논리형(boolean)
         - 문자열(String)
-    - 참조타입(주소값을 담는 그릇) : class , 주소값을 담기위해서는 객체생성(new)
+    - 참조타입(주소값을 담는 그릇) : class , 주소값을 담기위해서는 객체생성(new), array 
         - 기본타입이 아닌 모든 것 
 
     선언문법
