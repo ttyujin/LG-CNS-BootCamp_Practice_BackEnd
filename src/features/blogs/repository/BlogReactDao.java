@@ -2,7 +2,9 @@ package features.blogs.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import features.blogs.domain.dto.BlogRequestDTO;
 import features.blogs.domain.dto.BlogResponseDTO;
 
 public class BlogReactDao {
@@ -32,5 +34,31 @@ public class BlogReactDao {
         System.out.println("debug >>>> blog dao findByAll() "); 
         return blogs ; 
     }
+
+    public Optional<BlogResponseDTO> findById(int blogId) {
+        System.out.println("debug >>>> blog dao findById() params :  "+blogId );  
+        
+        // Q) stream 이용해서 filter 해서 찾은 객체를 반환 
+        return blogs.stream()
+            .filter( blog -> blog.getBlogId() == blogId )
+            .findAny() ; 
+    }
+
+    public List<BlogResponseDTO> findByKeyword(BlogRequestDTO request) {
+        System.out.println("debug >>>> blog dao findByKeyword params :  "+request);  
+
+        return blogs.stream()
+                    .filter( blog ->    blog.getTitle().contains(request.getKeyword()) 
+                                        || blog.getContent().contains(request.getKeyword()) )
+                    .toList() ; 
+    }
+
+    // 타입변경 
+    public int save(BlogRequestDTO request) { 
+        System.out.println("debug >>>> blog dao save params :  "+request);  
+        // blogs.add(request); 
+        return 0 ;
+    }
+
     
 }

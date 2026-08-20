@@ -3,7 +3,10 @@ package features.blogs.factory;
 import java.util.HashMap;
 import java.util.Map;
 
+import features.blogs.controller.InsertController;
 import features.blogs.controller.ListController;
+import features.blogs.controller.ReadController;
+import features.blogs.controller.SearchController;
 import features.blogs.repository.BlogReactDao;
 import features.blogs.service.BlogReactService;
 import features.blogs.service.BlogReactServiceImpl;
@@ -30,7 +33,12 @@ public class BlogBeanFactory {
         service = new BlogReactServiceImpl(dao);
 
         // 추후 추가되는 각 기능을 구현하는 xxxController 등록 
-        map.put("list.inspire", new ListController(service)); 
+        map.put("list.inspire",     new ListController(service)); 
+        
+        // Q) ReadController 등록 
+        map.put("read.inspire",     new ReadController(service)); 
+        map.put("search.inspire",   new SearchController(service)); 
+        map.put("insert.inspire",   new InsertController(service)); 
     }
 
     public static BlogBeanFactory getInstance() {
