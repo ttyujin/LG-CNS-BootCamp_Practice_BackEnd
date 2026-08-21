@@ -51,16 +51,15 @@ public class BlogReactServiceImpl implements BlogReactService {
 
     @Override
     public int update(BlogRequestDTO request) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        System.out.println("debug >>>> blog service update params :  "+request); 
+        return dao.update(request) ;
     }
 
     @Override
     public int delete(int blogId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
-    }
-
+          System.out.println("debug >>>> blog service delete params :  "+blogId);
+            return dao.delete(blogId);  }
+    
     @Override
     public List<BlogResponseDTO> search(BlogRequestDTO request) {
         System.out.println("debug >>>> blog service search params :  "+request);

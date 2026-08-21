@@ -1,6 +1,7 @@
 package features.blogs.repository;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,8 +57,46 @@ public class BlogReactDao {
     // 타입변경 
     public int save(BlogRequestDTO request) { 
         System.out.println("debug >>>> blog dao save params :  "+request);  
-        // blogs.add(request); 
-        return 0 ;
+        
+        /*
+        Q) blogId stream을 이용한 generator
+        hint) blogId= stream sort blogId reversed+1
+        */
+        int blogId = blogs.stream()
+                          .map( BlogResponseDTO::getBlogId )
+                          .sorted( Comparator.reverseOrder() )
+                          .findFirst()
+                          .orElse(0) + 1 ;
+
+        BlogResponseDTO response=BlogRequestDTO.toEntity(request);
+        response.setBlogId(blogId); //원래는 builder에서 보내줘야 된다. set를 쓰는것은 바람직하지 않다
+        
+        blogs.add(response); 
+        
+        return 1 ;
+    }
+
+    public int delete(int blogId){
+        System.out.println("debug>>>>blog dao delete params"+blogId);
+        boolean isFlag=blogs.removeIf(blog -> blog.getBlogId()==blogId);
+        return (isFlag) ?1:0;
+    }
+    
+    public int update(BlogRequestDTO request) {
+        System.out.println("debug >>>> blog dao update params : " + request);
+        
+        // Q) SQL : update title = request.getTitle() , content = request.getContent()
+        //          where blogId = request.getBlogId()
+
+         return blogs.stream()
+                .filter(blog -> blog.getBlogId() == request.getBlogId())
+                .findAny()
+                .map(blog -> {
+                    blog.setTitle(request.getTitle());
+                    blog.setContent(request.getContent());
+                    return 1;
+                })
+                .orElse(0);
     }
 
     

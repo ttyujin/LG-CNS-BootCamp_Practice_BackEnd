@@ -53,6 +53,9 @@ public class BlogReactView {
                     case 3 : 
                         insert();
                         break ;
+                    case 5:
+                        delete();
+                        break;
 
                     case 6 : 
                         search();
@@ -148,4 +151,38 @@ public class BlogReactView {
         
 
     }
+    public void update() {
+        System.out.println();
+        System.out.println(">>>> 데이터 수정 화면 ");
+        System.exit(1);
+        
+        String endPoint = "update.inspire";
+
+        // react data = { title : xxxxx, content : xxxxx, email : xxxxx}
+        System.out.print("수정하고자하는 키(blogId) 입력 : ");
+        int blogId = Integer.parseInt(scan.nextLine());
+
+        System.out.print("제목 : ");
+        String title = scan.nextLine();
+
+        System.out.print("내용 : ");
+        String content = scan.nextLine();
+
+        // axios.post("insert.inspire" , data) ;
+        int flag = front.update(endPoint, blogId, title, content);
+        System.out.println((flag == 1) ? "수정성공" : "수정실패");
+    }
+
+    public void delete() {
+        System.out.println();
+        System.out.println(">>>> 데이터 삭제 화면 ");
+        
+        String endPoint = "delete.inspire";
+        System.out.print("키(blogId) 입력 : ");
+
+        int blogId = Integer.parseInt(scan.nextLine() );
+        int response = front.delete(endPoint, blogId);
+        System.out.println((response == 1) ? "삭제성공" : "삭제실패");
+
+    }   
 }

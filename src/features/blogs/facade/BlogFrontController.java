@@ -4,10 +4,12 @@ import java.util.List;
 
 import javax.swing.ListCellRenderer;
 
+import features.blogs.controller.DeleteController;
 import features.blogs.controller.InsertController;
 import features.blogs.controller.ListController;
 import features.blogs.controller.ReadController;
 import features.blogs.controller.SearchController;
+import features.blogs.controller.UpdateController;
 import features.blogs.domain.dto.BlogResponseDTO;
 import features.blogs.factory.BlogBeanFactory;
 
@@ -46,6 +48,23 @@ public class BlogFrontController {
         return ((InsertController)controller).insert(title, content, email)  ;   
 
     }
+
+    public int delete(String endPoint, int blogId) {
+    System.out.println(
+        "debug >>>> front controller endPoint : "
+        + endPoint + ", blogId : " + blogId
+    );
+
+    Object controller = factory.getBean(endPoint);
+    return ((DeleteController)controller).delete(blogId);
+}
+
+    public int update(String endPoint, int blogId, String title, String content) {
+    System.out.println("debug >>>> front controller endPoint : " + endPoint);
+
+    Object controller = factory.getBean(endPoint);
+    return ((UpdateController)controller).update(blogId, title, content);
+}
 
 
 
